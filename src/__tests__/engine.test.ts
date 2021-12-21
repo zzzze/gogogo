@@ -48,7 +48,7 @@ test('init engine with initialData', () => {
   const blocksOfPieceMap = Object.values(engine.pieceMap.data)
   expect(blocksOfPieceMap).toHaveLength(10)
   blocksOfPieceMap.forEach(b => {
-    expect(b).toBe(blocks[0])
+    expect(b).toEqual(blocks[0])
   })
   expect(blocksOfPieceMap[0]?.qi).toHaveLength(8)
 });

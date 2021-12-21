@@ -1,7 +1,7 @@
 import cloneDeep from "lodash/cloneDeep"
 import Block from "./block"
 import {DOT_KIND} from "./dot"
-import Piece from "./piece"
+import Piece, {reversePieceKind} from "./piece"
 import Pos from "./pos"
 import Qi from "./qi"
 
@@ -57,7 +57,7 @@ export default class QiMap {
       b.qi.remove(piece)
     })
     delete this._data[piece.kind][`${piece.x},${piece.y}`]
-    const kind = piece.kind == DOT_KIND.BLACK ? DOT_KIND.WHITE : DOT_KIND.BLACK
+    const kind = reversePieceKind(piece.kind)
     blocks = this.getBlocks(piece, kind)
     const killed = blocks.reduce<Block[]>((acc, b) => {
       b.qi.remove(piece)

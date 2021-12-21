@@ -1,7 +1,6 @@
 import Block from "./block"
 import Board from "./board"
-import {DOT_KIND} from "./dot"
-import Piece from "./piece"
+import Piece, {reversePieceKind} from "./piece"
 import PieceMap from "./piece-map"
 import Pos from "./pos"
 import QiMap from "./qi-map"
@@ -87,7 +86,7 @@ export default class BlockManager {
       return
     }
     const pieces = Pieces.merge(...blocks.map(block => block.pieces))
-    const kind = blocks[0].kind == DOT_KIND.BLACK ? DOT_KIND.WHITE : DOT_KIND.BLACK
+    const kind = reversePieceKind(blocks[0].kind)
     pieces.forEach(killedDot => {
       this._pieceMap.del(killedDot)
       this._board.kill(killedDot.x, killedDot.y)
